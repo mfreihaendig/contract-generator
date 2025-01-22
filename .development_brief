@@ -1,0 +1,72 @@
+# Simple Contract Generator - Development Brief
+
+## Project Overview
+A web-based tool that generates contracts in markdown format, allowing users to easily copy and paste the formatted text. The generator converts user inputs into a professional contract template that can be further customized in any markdown editor.
+
+The tool will later be integrated with an existing simple website that consists of a static page with a tool directory and various other simple tools, each with their own contained setup.
+
+## Tech Stack
+* ReactJS
+* TailwindCSS
+* HTML
+* JavaScript
+
+## Core Functionality
+
+### User Inputs
+* Party Information
+  * First party name and address
+  * Second party name and address
+* Contract Details
+  * Project scope/description
+  * Jurisdiction
+  * Date
+
+### Output Generation
+* Markdown Contract Creation
+  * Convert inputs into markdown formatted text
+  * Include proper markdown syntax for headers, sections, and formatting
+  * Generate a clipboard-friendly output
+  * Provide a formatted preview of the markdown
+
+## User Experience Requirements
+
+### Interface
+* Simple, single-page form design
+* Split-screen view with form and markdown preview
+* One-click copy to clipboard functionality
+* Mobile-friendly layout
+
+### Results Display
+* Live preview of formatted markdown
+* Clear "Copy to Clipboard" button
+* Visual confirmation when copied
+* Option to view raw markdown or rendered preview
+
+## Technical Requirements
+
+### Frontend
+* Form-based input collection
+* Real-time markdown conversion
+* Clipboard API integration
+* Responsive design
+
+### Data Handling
+* Client-side processing only
+* No data storage
+* Basic input sanitization
+* Markdown syntax generation
+
+## Development Priorities
+1. Input form creation
+2. Markdown template engine
+3. Preview rendering
+4. Copy functionality
+5. Mobile responsiveness
+
+## Success Criteria
+* Easy-to-use interface
+* Clean markdown output
+* Working copy to clipboard function
+* Proper markdown formatting
+* Mobile-friendly design

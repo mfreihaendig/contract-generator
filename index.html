@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Generator</title>
+    <link href="./dist/output.css" rel="stylesheet">
+</head>
+<body class="bg-neutral-50 min-h-screen">
+    <main class="container mx-auto px-4 py-12 min-h-screen">
+        <!-- Header -->
+        <div class="max-w-2xl mx-auto mb-12">
+            <div class="flex items-center justify-center gap-3 mb-3">
+                <div class="w-12 h-12 -rotate-6 transition-transform hover:rotate-0 duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 6.5h8m-8 6h8m-8 6h8M4 4v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2Z" />
+                    </svg>
+                </div>
+                <h1 class="text-4xl font-medium text-neutral-900">
+                    Contract Generator
+                </h1>
+            </div>
+            <p class="text-center text-neutral-500 text-lg">
+                Generate a professional contract in seconds
+            </p>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start lg:max-w-7xl lg:mx-auto relative">
+            <!-- Left Column: Input Form -->
+            <div class="space-y-8">
+                <form id="contractForm" class="space-y-8">
+                    <!-- Party Information Section -->
+                    <section class="backdrop-blur-lg bg-white/40 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/20 p-6 mb-6">
+                        <h2 class="text-xl font-medium text-neutral-900 mb-6">Parties</h2>
+                        
+                        <!-- Service Provider -->
+                        <div class="space-y-6 mb-8">
+                            <div class="flex items-center gap-2">
+                                <div class="h-8 w-1 bg-neutral-300 rounded-full"></div>
+                                <h3 class="text-sm font-medium text-neutral-600 uppercase tracking-wide">Service Provider</h3>
+                            </div>
+                            <div class="space-y-4 pl-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Full Name</label>
+                                    <input
+                                        type="text"
+                                        name="firstPartyName"
+                                        class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                        placeholder="Your full name or company name"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Business Address</label>
+                                    <textarea
+                                        name="firstPartyAddress"
+                                        rows="2"
+                                        class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                        placeholder="Your complete business address"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Client -->
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-2">
+                                <div class="h-8 w-1 bg-neutral-200 rounded-full"></div>
+                                <h3 class="text-sm font-medium text-neutral-600 uppercase tracking-wide">Client</h3>
+                            </div>
+                            <div class="space-y-4 pl-3">
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Full Name</label>
+                                    <input
+                                        type="text"
+                                        name="secondPartyName"
+                                        class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                        placeholder="Client's full name or company name"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Business Address</label>
+                                    <textarea
+                                        name="secondPartyAddress"
+                                        rows="2"
+                                        class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                        placeholder="Client's complete business address"
+                                    ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Project Details Section -->
+                    <section class="backdrop-blur-lg bg-white/40 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/20 p-6 mb-6">
+                        <h2 class="text-xl font-medium text-neutral-900 mb-6">Project Details</h2>
+                        <div class="space-y-6">
+                            <!-- Scope -->
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-2">Project Scope</label>
+                                <textarea
+                                    name="projectScope"
+                                    rows="4"
+                                    class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                    placeholder="Describe the project deliverables, milestones, and specific services to be provided"
+                                ></textarea>
+                            </div>
+
+                            <!-- Duration -->
+                            <div class="space-y-4">
+                                <label class="block text-sm font-medium text-neutral-700 mb-2">Project Duration</label>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <label class="relative flex cursor-pointer rounded-lg border border-neutral-200 p-4 hover:border-neutral-300">
+                                        <input
+                                            type="radio"
+                                            name="projectDuration"
+                                            id="projectDuration"
+                                            value="open"
+                                            class="sr-only peer"
+                                        >
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-neutral-900">Open Ended</span>
+                                            <span class="text-xs text-neutral-500">Until terminated</span>
+                                        </div>
+                                        <div class="absolute top-4 right-4 h-5 w-5 text-blue-500 opacity-0 peer-checked:opacity-100">
+                                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                    <label class="relative flex cursor-pointer rounded-lg border border-neutral-200 p-4 hover:border-neutral-300">
+                                        <input
+                                            type="radio"
+                                            name="projectDuration"
+                                            value="fixed"
+                                            class="sr-only peer"
+                                        >
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-neutral-900">Fixed</span>
+                                            <span class="text-xs text-neutral-500">Set timeframe</span>
+                                        </div>
+                                        <div class="absolute top-4 right-4 h-5 w-5 text-blue-500 opacity-0 peer-checked:opacity-100">
+                                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                    <label class="relative flex cursor-pointer rounded-lg border border-neutral-200 p-4 hover:border-neutral-300">
+                                        <input
+                                            type="radio"
+                                            name="projectDuration"
+                                            value="custom"
+                                            class="sr-only peer"
+                                        >
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-neutral-900">Custom</span>
+                                            <span class="text-xs text-neutral-500">Custom terms</span>
+                                        </div>
+                                        <div class="absolute top-4 right-4 h-5 w-5 text-blue-500 opacity-0 peer-checked:opacity-100">
+                                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <!-- Duration Details Container -->
+                                <div id="durationDetailsContainer" class="hidden mt-4">
+                                    <div class="duration-input-wrapper">
+                                        <!-- Short input for fixed duration -->
+                                        <input
+                                            type="text"
+                                            name="durationDetails"
+                                            id="durationDetailsShort"
+                                            class="hidden w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                            placeholder="e.g., 3 months"
+                                        >
+                                        <!-- Larger textarea for custom duration -->
+                                        <textarea
+                                            name="durationDetails"
+                                            id="durationDetailsLong"
+                                            rows="3"
+                                            class="hidden w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                            placeholder="e.g., Project will run until all deliverables are completed, but no longer than 6 months..."
+                                        ></textarea>
+                                    </div>
+                                    <p class="mt-2 text-sm text-neutral-500 hidden" id="durationDetailsHint">
+                                        Tip: Include any specific conditions or milestones that determine the project duration
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Financial Terms Section -->
+                    <section class="backdrop-blur-lg bg-white/40 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/20 p-6 mb-6">
+                        <h2 class="text-xl font-medium text-neutral-900 mb-6">Financial Terms</h2>
+                        <div class="space-y-6">
+                            <!-- Fee Structure -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Fee Structure</label>
+                                    <select
+                                        name="feeModality"
+                                        id="feeModality"
+                                        class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                    >
+                                        <option value="">Select fee type</option>
+                                        <option value="Fixed Fee">Fixed Fee</option>
+                                        <option value="Retainer">Monthly Retainer</option>
+                                        <option value="Hourly">Hourly Rate</option>
+                                    </select>
+                                </div>
+                                <div id="feeAmountContainer" class="hidden">
+                                    <label id="feeAmountLabel" class="block text-sm font-medium text-neutral-700 mb-2">Amount</label>
+                                    <div class="relative">
+                                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500">$</span>
+                                        <input
+                                            type="number"
+                                            name="feeAmount"
+                                            id="feeAmount"
+                                            min="0"
+                                            step="0.01"
+                                            class="w-full rounded-lg border-neutral-200 bg-white pl-8 pr-16 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                            placeholder="0.00"
+                                        >
+                                        <span id="feeUnit" class="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Payment Schedule -->
+                            <div class="space-y-4">
+                                <label class="block text-sm font-medium text-neutral-700 mb-2">Payment Schedule</label>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <label class="relative flex cursor-pointer rounded-lg border border-neutral-200 p-4 hover:border-neutral-300">
+                                        <input
+                                            type="radio"
+                                            name="paymentSchedule"
+                                            value="upfront"
+                                            class="sr-only peer"
+                                        >
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-neutral-900">Upfront</span>
+                                            <span class="text-xs text-neutral-500">Pay before start</span>
+                                        </div>
+                                        <div class="absolute top-4 right-4 h-5 w-5 text-blue-500 opacity-0 peer-checked:opacity-100">
+                                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                    <label class="relative flex cursor-pointer rounded-lg border border-neutral-200 p-4 hover:border-neutral-300">
+                                        <input
+                                            type="radio"
+                                            name="paymentSchedule"
+                                            value="delivery"
+                                            class="sr-only peer"
+                                        >
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-neutral-900">On Delivery</span>
+                                            <span class="text-xs text-neutral-500">Pay when done</span>
+                                        </div>
+                                        <div class="absolute top-4 right-4 h-5 w-5 text-blue-500 opacity-0 peer-checked:opacity-100">
+                                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                    <label class="relative flex cursor-pointer rounded-lg border border-neutral-200 p-4 hover:border-neutral-300">
+                                        <input
+                                            type="radio"
+                                            name="paymentSchedule"
+                                            value="custom"
+                                            class="sr-only peer"
+                                        >
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-neutral-900">Custom</span>
+                                            <span class="text-xs text-neutral-500">Custom terms</span>
+                                        </div>
+                                        <div class="absolute top-4 right-4 h-5 w-5 text-blue-500 opacity-0 peer-checked:opacity-100">
+                                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <!-- Custom Payment Schedule Container -->
+                                <div id="customScheduleContainer" class="hidden space-y-2">
+                                    <textarea
+                                        name="customPaymentSchedule"
+                                        id="customPaymentSchedule"
+                                        rows="3"
+                                        class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                        placeholder="Describe the payment milestones and schedule..."
+                                    ></textarea>
+                                    <p class="mt-2 text-sm text-neutral-500" id="scheduleDetailsHint">
+                                        Tip: Include specific payment milestones, amounts, and timing (e.g., "40% upon project start, 30% after milestone 1, 30% upon completion")
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Payment Method -->
+                            <div class="space-y-4">
+                                <label class="block text-sm font-medium text-neutral-700 mb-2">Payment Method</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="relative flex cursor-pointer rounded-lg border border-neutral-200 p-4 hover:border-neutral-300">
+                                        <input
+                                            type="radio"
+                                            name="paymentMethod"
+                                            value="bank"
+                                            class="sr-only peer"
+                                        >
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-neutral-900">Bank Transfer</span>
+                                            <span class="text-xs text-neutral-500">Standard bank details</span>
+                                        </div>
+                                        <div class="absolute top-4 right-4 h-5 w-5 text-blue-500 opacity-0 peer-checked:opacity-100">
+                                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                    <label class="relative flex cursor-pointer rounded-lg border border-neutral-200 p-4 hover:border-neutral-300">
+                                        <input
+                                            type="radio"
+                                            name="paymentMethod"
+                                            value="custom"
+                                            class="sr-only peer"
+                                        >
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-neutral-900">Custom</span>
+                                            <span class="text-xs text-neutral-500">Custom payment details</span>
+                                        </div>
+                                        <div class="absolute top-4 right-4 h-5 w-5 text-blue-500 opacity-0 peer-checked:opacity-100">
+                                            <svg viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <!-- Bank Account Details -->
+                                <div id="bankDetailsContainer" class="hidden">
+                                    <textarea
+                                        name="bankDetails"
+                                        id="bankDetails"
+                                        rows="4"
+                                        class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900 font-mono text-sm"
+                                        placeholder="Deutsche Bank
+Max Mustermann GmbH
+DE89 3704 0044 0532 0130 00
+DEUTDEBBXXX"
+                                    ></textarea>
+                                </div>
+
+                                <!-- Custom Payment Method Container -->
+                                <div id="customMethodContainer" class="hidden">
+                                    <textarea
+                                        name="customPaymentMethod"
+                                        id="customPaymentMethod"
+                                        rows="3"
+                                        class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                        placeholder="Enter payment method details (e.g., PayPal account, crypto wallet address)"
+                                    ></textarea>
+                                    <p class="mt-2 text-sm text-neutral-500">
+                                        Tip: Specify the exact payment method and any necessary account or reference information
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Legal Details Section -->
+                    <section class="backdrop-blur-lg bg-white/40 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/20 p-6 mb-6">
+                        <h2 class="text-xl font-medium text-neutral-900 mb-6">Legal Details</h2>
+                        <div class="space-y-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Jurisdiction</label>
+                                    <input
+                                        type="text"
+                                        name="jurisdiction"
+                                        class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                        placeholder="e.g., Berlin, Germany"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Contract Date</label>
+                                    <input
+                                        type="date"
+                                        name="contractDate"
+                                        class="w-full rounded-lg border-neutral-200 bg-white px-4 py-3 text-neutral-900 shadow-sm transition-colors focus:border-neutral-900 focus:ring-neutral-900"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+            </div>
+
+            <!-- Right Column: Task List and Contract Preview -->
+            <div class="lg:block h-full">
+                <!-- Spacing div for mobile only -->
+                <div class="h-12 lg:hidden"></div>
+                <!-- Sticky container for task list and button -->
+                <div class="sticky top-8 space-y-6 lg:sticky lg:top-8 lg:z-10">
+                    <!-- Task List Card -->
+                    <section class="backdrop-blur-lg bg-white/40 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/20 p-6 mb-6 relative overflow-hidden">
+                        <!-- Progress Bar -->
+                        <div class="absolute top-0 left-0 w-full h-1 bg-neutral-100/50">
+                            <div id="progressBar" class="h-full bg-green-500/50 backdrop-blur-sm transition-all duration-500 ease-in-out" style="width: 0%"></div>
+                        </div>
+
+                        <h2 class="text-xl font-medium text-neutral-900 mb-8">Required Information</h2>
+                        <ul class="space-y-8" id="taskList">
+                            <!-- Service Provider Details -->
+                            <li class="group">
+                                <div class="flex items-center gap-3">
+                                    <div class="relative">
+                                        <div class="absolute -inset-1 rounded-full bg-green-100/50 backdrop-blur-sm opacity-0 group-[.is-complete]:opacity-100 transition-opacity"></div>
+                                        <svg class="h-5 w-5 text-neutral-400 relative group-[.is-complete]:text-green-600 transition-colors" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-lg text-neutral-900 group-[.is-complete]:font-medium transition-all">Service Provider Details</span>
+                                </div>
+                            </li>
+
+                            <!-- Client Details -->
+                            <li class="group">
+                                <div class="flex items-center gap-3">
+                                    <div class="relative">
+                                        <div class="absolute -inset-1 rounded-full bg-green-100/50 backdrop-blur-sm opacity-0 group-[.is-complete]:opacity-100 transition-opacity"></div>
+                                        <svg class="h-5 w-5 text-neutral-400 relative group-[.is-complete]:text-green-600 transition-colors" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-lg text-neutral-900 group-[.is-complete]:font-medium transition-all">Client Details</span>
+                                </div>
+                            </li>
+
+                            <!-- Project Details -->
+                            <li class="group">
+                                <div class="flex items-center gap-3">
+                                    <div class="relative">
+                                        <div class="absolute -inset-1 rounded-full bg-green-100/50 backdrop-blur-sm opacity-0 group-[.is-complete]:opacity-100 transition-opacity"></div>
+                                        <svg class="h-5 w-5 text-neutral-400 relative group-[.is-complete]:text-green-600 transition-colors" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-lg text-neutral-900 group-[.is-complete]:font-medium transition-all">Project Details</span>
+                                </div>
+                            </li>
+
+                            <!-- Financial Terms -->
+                            <li class="group">
+                                <div class="flex items-center gap-3">
+                                    <div class="relative">
+                                        <div class="absolute -inset-1 rounded-full bg-green-100/50 backdrop-blur-sm opacity-0 group-[.is-complete]:opacity-100 transition-opacity"></div>
+                                        <svg class="h-5 w-5 text-neutral-400 relative group-[.is-complete]:text-green-600 transition-colors" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-lg text-neutral-900 group-[.is-complete]:font-medium transition-all">Financial Terms</span>
+                                </div>
+                            </li>
+
+                            <!-- Legal Details -->
+                            <li class="group">
+                                <div class="flex items-center gap-3">
+                                    <div class="relative">
+                                        <div class="absolute -inset-1 rounded-full bg-green-100/50 backdrop-blur-sm opacity-0 group-[.is-complete]:opacity-100 transition-opacity"></div>
+                                        <svg class="h-5 w-5 text-neutral-400 relative group-[.is-complete]:text-green-600 transition-colors" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <span class="text-lg text-neutral-900 group-[.is-complete]:font-medium transition-all">Legal Details</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Copy Contract Button -->
+                    <button 
+                        id="copyContract" 
+                        type="button" 
+                        class="w-full flex items-center justify-center gap-2 bg-neutral-900 text-white px-6 py-4 rounded-lg hover:bg-neutral-800 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
+                            <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
+                        </svg>
+                        Copy Contract
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-16 border-t border-neutral-200">
+        <div class="max-w-7xl mx-auto px-4 py-8 flex items-center justify-center">
+            <p class="text-sm text-neutral-500">
+                Contract Generator Tool
+            </p>
+        </div>
+    </footer>
+
+    <script src="./js/app.js"></script>
+</body>
+</html> 
