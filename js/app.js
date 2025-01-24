@@ -314,8 +314,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Handle copy button click
-    copyButton.addEventListener('click', async function() {
+    // Get popup elements
+    const disclaimerPopup = document.getElementById('disclaimerPopup');
+    const cancelPopupBtn = document.getElementById('cancelPopup');
+    const confirmCopyBtn = document.getElementById('confirmCopy');
+
+    // Function to show popup
+    function showPopup() {
+        disclaimerPopup.classList.remove('hidden');
+    }
+
+    // Function to hide popup
+    function hidePopup() {
+        disclaimerPopup.classList.add('hidden');
+    }
+
+    // Update the copy button click handler to show popup instead of copying directly
+    copyButton.addEventListener('click', function() {
+        showPopup();
+    });
+
+    // Handle popup cancel
+    cancelPopupBtn.addEventListener('click', hidePopup);
+
+    // Handle popup confirm and copy
+    confirmCopyBtn.addEventListener('click', async function() {
         // Get all form data and map it to template variables
         const formData = {
             // Map form fields to template variables
@@ -361,8 +384,28 @@ document.addEventListener('DOMContentLoaded', function() {
         if (template) {
             const contract = generateContract(template, formData);
             await copyToClipboard(contract);
+            hidePopup();
         }
     });
+
+    // Close popup when clicking outside
+    disclaimerPopup.addEventListener('click', function(e) {
+        if (e.target === disclaimerPopup) {
+            hidePopup();
+        }
+    });
+
+    // Add escape key handler to close popup
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !disclaimerPopup.classList.contains('hidden')) {
+            hidePopup();
+        }
+    });
+
+    // Move the existing copyButton click handler code into a new function
+    async function handleContractCopy() {
+        // ... existing copy logic ...
+    }
 
     // Helper function to format fee amount based on modality
     function formatFeeAmount(modality, amount) {
